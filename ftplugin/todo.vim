@@ -115,70 +115,7 @@ function! s:ChangeDueDateWrapper(by_days, repeat_mapping)
     silent! call repeat#set(a:repeat_mapping, v:count)
 endfunction
 
-" Folding {{{1
-" Options {{{2
-setlocal foldmethod=expr
-setlocal foldexpr=TodoFoldLevel(v:lnum)
-setlocal foldtext=TodoFoldText()
-
-" Update fold method after sort by default
-if ! exists("g:Todo_update_fold_on_sort")
-    let g:Todo_update_fold_on_sort=1
-endif
-
-" Go to first completed task
-let oldpos=getcurpos()
-if(!exists("g:Todo_fold_char"))
-    let g:Todo_fold_char='@'
-    let base_pos=search('^x\s', 'ce')
-    " Get next completed task
-    let first_incomplete = search('^\s*[^<x\s>]')
-    if (first_incomplete < base_pos)
-        " Check if all tasks from
-        let g:Todo_fold_char='x'
-    endif
-    call setpos('.', oldpos)
-endif
-
-function! s:get_contextproject(line) abort "{{{2
-    return matchstr(getline(a:line), g:Todo_fold_char.'[^ ]\+')
-endfunction "}}}3
-
-" TodoFoldLevel(lnum) {{{2
-function! TodoFoldLevel(lnum)
-    let this_context = s:get_contextproject(a:lnum)
-    let next_context = s:get_contextproject(a:lnum - 1)
-
-    if g:Todo_fold_char == 'x'
-        " fold on cmpleted task
-        return  match(getline(a:lnum),'\C^x\s') + 1
-    endif
-
-    let fold_level = 0
-
-    if this_context ==# next_context
-        let fold_level = '1'
-    else
-        let fold_level = '>1'
-    endif
-
-    return fold_level
-endfunction
-
-" TodoFoldText() {{{2
-function! TodoFoldText()
-    let this_context = s:get_contextproject(v:foldstart)
-    if g:Todo_fold_char == 'x'
-        let this_context = 'Completed tasks'
-    endif
-    " The text displayed at the fold is formatted as '+- N Completed tasks'
-    " where N is the number of lines folded.
-    return '+' . v:folddashes . ' '
-                \ . (v:foldend - v:foldstart + 1)
-                \ .' '. this_context.' '
-endfunction
-
 " Restore context {{{1
 let &cpo = s:save_cpo
 
-" vim: tabstop=4 shiftwidth=4 softtabstop=4 expandtab foldmethod=marker
+" vim: tabstop=4 shiftwidth=4 softtabstop=4 expandtab 

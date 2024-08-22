@@ -242,4 +242,4 @@ highlight default link TodoThresholdDate Comment
 
 let b:current_syntax = "todo"
 
-" vim: tabstop=4 shiftwidth=4 softtabstop=4 expandtab foldmethod=marker
+" vim: tabstop=4 shiftwidth=4 softtabstop=4 expandtab

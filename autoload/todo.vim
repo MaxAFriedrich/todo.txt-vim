@@ -173,9 +173,6 @@ endfunction
 function! todo#Sort(type)
     " vim :sort is usually stable
     " we sort first on contexts, then on projects and then on priority
-    if g:Todo_update_fold_on_sort
-        let g:Todo_fold_char=a:type
-    endif
     let oldcursor=todo#GetCurpos()
     if(a:type != "")
         exec ':sort /.\{-}\ze'.a:type.'/'
@@ -304,9 +301,6 @@ function! todo#HierarchicalSort(symbol, symbolsub, dolastsort)
     if v:statusmsg =~ '--No lines in buffer--'
         "Empty buffer do nothing
         return
-    endif
-    if g:Todo_update_fold_on_sort
-        let g:Todo_fold_char=a:symbol
     endif
     "if the sort modes doesn't start by '!' it must start with a space
     let l:sortmode=Todo_txt_InsertSpaceIfNeeded(g:Todo_txt_first_level_sort_mode)
@@ -862,4 +856,4 @@ fun! todo#Complete(findstart, base)
     endif
 endfun
 
-" vim: tabstop=4 shiftwidth=4 softtabstop=4 expandtab foldmethod=marker
+" vim: tabstop=4 shiftwidth=4 softtabstop=4 expandtab

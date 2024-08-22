@@ -1370,40 +1370,6 @@ Before:
 After:
 
 
-" function: TodoFoldLevel(lnum) {{{2
-
-Before:
-After:
-Given todo (Tasks):
-  active  due:2050-01-01 task                                     L:01
-  x 2017-09-01 complete task 1                                    L:02
-  x 2017-09-01 complete task 2                                    L:03
-  x 2017-09-01 complete task 3                                    L:04
-  X 2017-09-01 complete task 3                                    L:05
-  active  due:2055-01-01                                          L:06
-  x 2017-09-01 complete task 4                                    L:07
-  active  due:2059-01-01                                          L:08
-  xinvalid due:2059-01-01                                         L:09
-  Xinvalid due:2059-01-01                                         L:10
-  active  due:2059-01-01                                          L:11
-Execute (Check folding level):
-  AssertEqual foldlevel(1),       0, 'L:01'
-  AssertEqual foldlevel(2),       1, 'L:02'
-  AssertEqual foldlevel(3),       1, 'L:03'
-  AssertEqual foldlevel(4),       1, 'L:04'
-  AssertEqual foldlevel(5),       0, 'L:05'
-  AssertEqual foldlevel(6),       0, 'L:06'
-  AssertEqual foldlevel(7),       1, 'L:07'
-  AssertEqual foldlevel(8),       0, 'L:08'
-  AssertEqual foldlevel(9),       0, 'L:09'
-  AssertEqual foldlevel(10),      0, 'L:10'
-  AssertEqual foldlevel(11),      0, 'L:11'
-Execute (Check folding text):
-  AssertEqual foldtextresult(2),  '+- 3 Completed tasks '
-  AssertEqual foldtextresult(4),  '+- 1 Completed tasks '
-
-"}}}
-
 Include: include/teardown.vader
 
-" vim: tabstop=2 shiftwidth=2 softtabstop=2 expandtab foldmethod=marker
+" vim: tabstop=2 shiftwidth=2 softtabstop=2 expandtab

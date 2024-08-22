@@ -30,4 +30,4 @@ if exists("$DONE_FILE")
     au BufNewFile,BufRead $DONE_FILE set filetype=todo
 endif
 
-" vim: tabstop=4 shiftwidth=4 softtabstop=4 expandtab foldmethod=marker
+" vim: tabstop=4 shiftwidth=4 softtabstop=4 expandtab
