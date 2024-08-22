@@ -118,4 +118,8 @@ endfunction
 " Restore context {{{1
 let &cpo = s:save_cpo
 
-" vim: tabstop=4 shiftwidth=4 softtabstop=4 expandtab 
+" Disable spell check
+
+set nospell
+
+vim: tabstop=4 shiftwidth=4 softtabstop=4 expandtab 
