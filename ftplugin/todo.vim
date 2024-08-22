@@ -122,4 +122,4 @@ let &cpo = s:save_cpo
 
 set nospell
 
-vim: tabstop=4 shiftwidth=4 softtabstop=4 expandtab 
+"vim: tabstop=4 shiftwidth=4 softtabstop=4 expandtab 
