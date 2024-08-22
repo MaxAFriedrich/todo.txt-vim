@@ -44,16 +44,15 @@ let s:todayDate=strftime('%Y\-%m\-%d')
 execute 'syntax match TodoDueToday    /\v\c<due:' . s:todayDate . '>/ contains=NONE'
 
 " Other priority colours might be defined by the user
-highlight default link TodoKey         #FFA500 (Orange)
-highlight default link TodoDone        #008000 (Green)
-highlight default link TodoPriorityA   #FF0000 (Red)
-highlight default link TodoPriorityB   #FFA500 (Orange)
-highlight default link TodoPriorityC   #FFFF00 (Yellow)
-highlight default link TodoDate        #0000FF (Blue)
-highlight default link TodoProject     #800080 (Purple)
-highlight default link TodoContext     #00FFFF (Cyan)
-highlight default link TodoDueToday    #FF69B4 (Hot Pink)
-
+highlight default link TodoKey         Identifier
+highlight default link TodoDone        Comment
+highlight default link TodoPriorityA   Error
+highlight default link TodoPriorityB   Todo
+highlight default link TodoPriorityC   Constant
+highlight default link TodoDate        Function
+highlight default link TodoProject     Type
+highlight default link TodoContext     Special
+highlight default link TodoDueToday    WarningMsg
 
 function! todo#GetDateRegexForPastDates(...)
     " Build a RegExp to match all dates prior to a reference date.
